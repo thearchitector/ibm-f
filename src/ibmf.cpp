@@ -1,7 +1,8 @@
+#include <Arduino.h>
 #include <BleKeyboard.h>
 
-#define TX_CLOCK 2
-#define TX_DATA 3
+#define TX_CLOCK 25
+#define TX_DATA 26
 
 BleKeyboard bleKeyboard("IBM F-BLE", "Elias Gabriel", 100);
 
@@ -20,8 +21,7 @@ void capture() {
     else {
       if(bitPos == 8) {
         // final "end" bit, should be 0
-        Serial.println(String(keystroke, BIN));
-        Serial.println(String(keystroke, DEC));
+        bleKeyboard.print(String(keystroke, DEC));
         isReading = false;
       }
       else {
@@ -49,5 +49,5 @@ void setup() {
 }
 
 void loop() {
-  
+
 }
